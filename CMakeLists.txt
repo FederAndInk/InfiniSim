@@ -80,6 +80,8 @@ target_sources(infinisim PUBLIC
   sim/components/ble/MusicService.cpp
   sim/components/ble/NavigationService.h
   sim/components/ble/NavigationService.cpp
+  sim/components/ble/CalendarEventService.h
+  sim/components/ble/CalendarEventService.cpp
   sim/components/ble/NimbleController.h
   sim/components/ble/NimbleController.cpp
   sim/components/ble/weather/WeatherService.h
@@ -138,6 +140,7 @@ target_sources(infinisim PUBLIC
   )
 target_include_directories(infinisim PRIVATE "sim")
 target_include_directories(infinisim PRIVATE "sim/libraries/log") # for nrf_log.h
+target_include_directories(infinisim PRIVATE "sim/libraries/util") # for nrf_assert.h
 target_include_directories(infinisim PRIVATE "sim/libraries/timer") # for app_timer.h
 target_include_directories(infinisim PRIVATE "sim/nrfx") # for nrfx_log.h and others
 target_include_directories(infinisim PRIVATE "sim/nrfx/hal") # for nrfx_log.h
