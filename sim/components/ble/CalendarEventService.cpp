@@ -79,24 +79,68 @@ CalendarEventService::CalendarEventService(System::SystemTask& systemTask,
   using namespace std::chrono_literals;
   auto it = calEvents.emplace_back();
   it->color = 0x61ff86;
+  it->strings = {"Meeting\0"
+                 "Usual room\0"
+                 "description 0, long text this description is really long, this should "
+                 "be taken into account:\n - take this\n - do that"};
+  it->durationInSeconds = 60 * 5;
+  it->id = 1;
+  it->timestamp = std::chrono::system_clock::to_time_t(
+    std::chrono::system_clock::now() - std::chrono::seconds{it->durationInSeconds} -
+    2min);
+
+  it = calEvents.emplace_back();
+  it->color = 0xF15f16;
+  it->strings = {"Main event of july\0"
+                 "Conference room\0"
+                 "description 0, long text this description is really long, this should "
+                 "be taken into account:\n - take this\n - do that"};
+  it->durationInSeconds = 60 * 60 * 12 + 60 * 30;
+  it->id = 1;
+  it->timestamp =
+    std::chrono::system_clock::to_time_t(std::chrono::system_clock::now() - 5min);
+
+  it = calEvents.emplace_back();
+  it->color = 0x611f86;
+  it->strings = {"small break\0"
+                 "\0"
+                 "description 0, long text this description is really long, this should "
+                 "be taken into account:\n - take this\n - do that"};
+  it->durationInSeconds = 60 * 5;
+  it->id = 1;
+  it->timestamp =
+    std::chrono::system_clock::to_time_t(std::chrono::system_clock::now() + 2min);
+
+  it = calEvents.emplace_back();
+  it->color = 0x61ff86;
   it->strings = {
     "title 1 long text\0"
     "location 1, Paris, France\0"
     "description 1, this should be taken into account:\n - take this\n - do that"};
   it->durationInSeconds = 60 * 60 * 2;
-  it->id = 1;
+  it->id = 2;
   it->timestamp =
-    std::chrono::system_clock::to_time_t(std::chrono::system_clock::now() + 2h);
+    std::chrono::system_clock::to_time_t(std::chrono::system_clock::now() + 7h);
 
   it = calEvents.emplace_back();
   it->color = 0xF15f16;
-  it->strings = {"title 2\0"
-                 "loc 2\0"
+  it->strings = {"art exposition\0"
+                 "Museum of things, Oslo\0"
                  "desc 2"};
   it->durationInSeconds = 60 * 60;
-  it->id = 2;
+  it->id = 3;
   it->timestamp =
-    std::chrono::system_clock::to_time_t(std::chrono::system_clock::now() + 4h);
+    std::chrono::system_clock::to_time_t(std::chrono::system_clock::now() + 26h);
+
+  it = calEvents.emplace_back();
+  it->color = 0xF12f16;
+  it->strings = {"End of times\0"
+                 "Earth\0"
+                 ""}; // no description
+  it->durationInSeconds = 60 * 50;
+  it->id = 4;
+  it->timestamp =
+    std::chrono::system_clock::to_time_t(std::chrono::system_clock::now() + 49h);
 }
 
 void CalendarEventService::Init()
